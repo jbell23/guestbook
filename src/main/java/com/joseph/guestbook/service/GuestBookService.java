@@ -11,7 +11,6 @@ import java.util.List;
 public class GuestBookService {
 
     @Autowired
-
     private GuestBookEntryRepository guestBookEntryRepository;
 
     public List<GuestBookEntry> findAllEntries () {
