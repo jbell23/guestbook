@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface GuestBookEntryRepository
-    extends CrudRepository<GuestBookEntry, Integer> {
+        extends CrudRepository<GuestBookEntry, Integer> {
 
     @Override
     List <GuestBookEntry> findAll ();

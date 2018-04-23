@@ -13,8 +13,10 @@ public class GuestBookEntry {
     private Integer id;
 
     @NotEmpty
-    private String user;
+    private String comment;
 
     @NotEmpty
-    private String comment;
+    private String user;
+
+
 }

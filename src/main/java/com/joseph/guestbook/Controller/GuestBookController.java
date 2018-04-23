@@ -14,7 +14,7 @@ public class GuestBookController {
     @Autowired
     private GuestBookService guestBookService;
 
-    @GetMapping ("/comment")
+    @GetMapping ("/")
     public List <GuestBookEntry> testMapping () {
         return guestBookService.findAllEntries ();
     }
