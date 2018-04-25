@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping ("/api")
 @RestController
-public class GuestBookController {
+public class GuestBookRestController {
 
     @Autowired
     private GuestBookService guestBookService;
