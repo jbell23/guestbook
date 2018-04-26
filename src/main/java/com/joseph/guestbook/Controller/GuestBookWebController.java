@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class GuestBookWebController {
@@ -32,10 +33,9 @@ public class GuestBookWebController {
     @GetMapping("/")
     public String displayGuestBook (Model model) {
 
-        model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Add A New Comment");
+        model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Add A New Beer");
         model.addAttribute(ENTRIES_TEMPLATE_ID, this.guestBookService.findAllEntries());
         model.addAttribute("newEntry", new GuestBookEntry());
-
 
         return GUESTBOOK_TEMPLATE;
     }
@@ -53,7 +53,7 @@ public class GuestBookWebController {
             this.guestBookService.save(newEntry);
             return HOMEPAGE_REDIRECT;
         } else {
-            model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please correct the comment");
+            model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please Correct The Data");
             model.addAttribute (ENTRIES_TEMPLATE_ID, this.guestBookService.findAllEntries());
             return GUESTBOOK_TEMPLATE;
         }
@@ -62,7 +62,7 @@ public class GuestBookWebController {
     @GetMapping ("update/{id}")
     public String editComment (Model model, @PathVariable Integer id) {
         model.addAttribute(ENTRIES_TEMPLATE_ID, this.guestBookService.findAllEntries());
-        model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please Chnage the Comment");
+        model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please Change the Data");
         model.addAttribute(NEW_PAGE_TEMPLATE_ID, this.guestBookService.findOne(id));
 
         return GUESTBOOK_TEMPLATE;
@@ -76,12 +76,14 @@ public class GuestBookWebController {
 
             current.setUser(newEntry.getUser());
             current.setComment(newEntry.getComment());
+            current.setPercent(newEntry.getPercent());
+            current.setTime(newEntry.getTime());
 
             this.guestBookService.save(current);
 
             return HOMEPAGE_REDIRECT;
         } else {
-            model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please Correct The Comment");
+            model.addAttribute(GUESTBOOK_FORM_HEADER_ID, "Please Correct The Data");
             model.addAttribute(ENTRIES_TEMPLATE_ID, this.guestBookService.findAllEntries());
 
             return GUESTBOOK_TEMPLATE;

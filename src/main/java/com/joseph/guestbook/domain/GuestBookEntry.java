@@ -21,6 +21,30 @@ public class GuestBookEntry {
     @Column (name = "user")
     private String user;
 
+    @NotEmpty
+    @Column (name = "percent")
+    private String percent;
+
+
+    @Column (name = "time")
+    private String time;
+
+    public String getPercent() {
+        return percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent = percent;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -28,6 +52,7 @@ public class GuestBookEntry {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getComment() {
         return comment;

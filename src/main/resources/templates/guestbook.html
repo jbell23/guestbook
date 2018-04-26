@@ -6,52 +6,44 @@
     <title>Spring Guestbook</title>
 </head>
 <body>
-<h1>Users Table</h1>
+<h1>Beer Tasting Club</h1>
+<div align="center">
 <img th:src="@{/images/logo.png}" />
+</div>
 <div th:if="${entries.isEmpty()}">
     <p>There are no entries</p>
     <h2 th:text="${formHeader}"></h2>
 
-    <form th:object="${newEntry}" method="post">
-        <label>User: </label>
-        <input type="text" size="32" th:field="*{user}" />
-        <label>Comment: </label>
-        <input type="text" size="64" th:field="*{comment}" />
-
-        <input type="submit" value="Submit" />
-        <input type="reset" value="Reset" />
-
-        <p class="warning" th:if="${#fields.hasErrors('user')}">User cannot be empty</p>
-        <p class="warning" th:if="${#fields.hasErrors('comment')}">Comment cannot be empty</p>
-    </form>
 </div>
 <div th:if="${!entries.isEmpty()}">
-<table>
+<table align="center">
     <tr>
-
-        <th>User</th><th>Comment</th><th>Delete</th><th>Update</th>
+        <th>Beer</th><th>Country of Origin</th><th>Alcohol Percentage</th><th>Date Tested</th><th>Delete</th><th>Update</th>
     </tr>
     <tr th:each="entry: ${entries}">
         <td th:text="${entry.user}"></td>
         <td th:text="${entry.comment}"></td>
+        <td th:text="${entry.percent} + '%'"></td>
+        <td th:text="${entry.time}"></td>
         <td><a th:href="@{'/delete/'+${entry.id}}">Delete</a></td>
         <td><a th:href="@{'/update/'+${entry.id}}">Update</a></td>
     </tr>
 </table>
     <h2 th:text="${formHeader}"></h2>
 
-    <form th:object="${newEntry}" method="post">
-        <label>User: </label>
-        <input type="text" size="32" th:field="*{user}" />
-        <label>Comment: </label>
-        <input type="text" size="64" th:field="*{comment}" />
-
-        <input type="submit" value="Submit" />
-        <input type="reset" value="Reset" />
-
-        <p class="warning" th:if="${#fields.hasErrors('user')}">User cannot be empty</p>
-        <p class="warning" th:if="${#fields.hasErrors('comment')}">Comment cannot be empty</p>
-    </form>
 </div>
+<form th:object="${newEntry}" method="post" style="text-align: center">
+    <input placeholder="Beer" type="text" size="32" th:field="*{user}" /><br/>
+    <input placeholder="Country of Origin" type="text" size="32" th:field="*{comment}" /><br/>
+    <input placeholder="Alcohol Content" type="text" size="32" th:field="*{percent}"/><br/>
+    <input placeholder="Date Tested" type="date" size="10" th:field="*{time}" /><br/>
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Reset" />
+    <br/>
+    <p class="warning" th:if="${#fields.hasErrors('user')}">Beer cannot be empty</p>
+    <p class="warning" th:if="${#fields.hasErrors('comment')}">Country cannot be empty</p>
+    <p class="warning" th:if="${#fields.hasErrors('percent')}">Percent cannot be empty</p>
+    <p class="warning" th:if="${#fields.hasErrors('time')}">Time cannot be empty</p>
+</form>
 </body>
 </html>

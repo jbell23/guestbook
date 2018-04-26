@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: #247ba0;
     font-family: sans-serif;
 }
 table {
@@ -7,9 +7,9 @@ table {
     border-radius: 8px;
 }
 th {
-    font-size: 150%;
+    font-size: 115%;
     text-align: left;
-    background-color: aquamarine;
+    background-color: #70c1b3;
     padding: 10px;
 }
 td {
@@ -32,4 +32,15 @@ a:hover {
     padding: 8px;
     border: 2px yellow;
     border-radius: 5px;
+}
+h1, h2 {
+    color: white;
+    text-align: center;
+}
+input {
+    margin-bottom: 0.5rem;
+}
+
+img {
+    margin-bottom: 0.4rem;
 }
