@@ -1,4 +1,4 @@
-package com.joseph.guestbook;
+package com.joseph.beer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -17,12 +17,13 @@
 <div th:if="${!entries.isEmpty()}">
 <table align="center">
     <tr>
-        <th>Beer</th><th>Country of Origin</th><th>Alcohol Percentage</th><th>Date Tested</th><th>Delete</th><th>Update</th>
+        <th>Beer</th><th>Country of Origin</th><th>Alcohol Percentage</th><th>Description</th><th>Date Tested</th><th>Delete</th><th>Update</th>
     </tr>
     <tr th:each="entry: ${entries}">
-        <td th:text="${entry.user}"></td>
-        <td th:text="${entry.comment}"></td>
+        <td th:text="${entry.beer}"></td>
+        <td th:text="${entry.country}"></td>
         <td th:text="${entry.percent} + '%'"></td>
+        <td th:text="${entry.comment}"></td>
         <td th:text="${entry.time}"></td>
         <td><a th:href="@{'/delete/'+${entry.id}}">Delete</a></td>
         <td><a th:href="@{'/update/'+${entry.id}}">Update</a></td>
@@ -32,18 +33,18 @@
 
 </div>
 <form th:object="${newEntry}" method="post" style="text-align: center">
-    <input placeholder="Beer" type="text" size="32" th:field="*{user}" /><br/>
-    <input placeholder="Country of Origin" type="text" size="32" th:field="*{comment}" /><br/>
+    <input placeholder="Beer" type="text" size="32" th:field="*{beer}" /><br/>
+    <input placeholder="Country of Origin" type="text" size="32" th:field="*{country}" /><br/>
     <input placeholder="Alcohol Content" type="text" size="32" th:field="*{percent}"/><br/>
+    <input placeholder="Description" type="text" size="32" th:field="*{comment}" /><br/>
     <input placeholder="Date Tested" type="date" size="10" th:field="*{time}" /><br/>
     <input type="submit" value="Submit" />
     <input type="reset" value="Reset" />
     <br/>
-    <p class="warning" th:if="${#fields.hasErrors('user')}">Beer Must Be Between 3 and 30 Characters</p>
-    <p class="warning" th:if="${#fields.hasErrors('comment')}">Country Must Be Between 3 and 40 Characters</p>
+    <p class="warning" th:if="${#fields.hasErrors('beer')}">Beer Must Be Between 3 and 30 Characters</p>
+    <p class="warning" th:if="${#fields.hasErrors('comment')}">Description Must Be Between 3 and 40 Characters</p>
     <p class="warning" th:if="${#fields.hasErrors('percent')}">Percent Must Be Between 0 and 100%</p>
     <p class="warning" th:if="${#fields.hasErrors('time')}">Time cannot be empty</p>
 </form>
-
 </body>
 </html>

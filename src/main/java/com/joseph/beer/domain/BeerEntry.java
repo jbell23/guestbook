@@ -1,4 +1,4 @@
-package com.joseph.guestbook.domain;
+package com.joseph.beer.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "entries")
-public class GuestBookEntry {
+public class BeerEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,14 +17,27 @@ public class GuestBookEntry {
     private Integer id;
 
     @NotEmpty
-    @Size(min=3, max=30)
+    @Size(min=3, max=40)
+    @Column (name = "beer")
+    private String beer;
+
+    @NotEmpty
+    @Size(min=3, max=40)
     @Column (name = "comment")
     private String comment;
 
     @NotEmpty
-    @Size(min=3, max=40)
-    @Column (name = "user")
-    private String user;
+    @Size(min = 3, max = 30)
+    @Column (name = "country")
+    private String country;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     @Column (name = "percent", nullable = false)
     @NotNull(message = "Alcohol Percent Cannot Be Empty")
@@ -67,11 +80,11 @@ public class GuestBookEntry {
         this.comment = comment;
     }
 
-    public String getUser() {
-        return user;
+    public String getBeer() {
+        return beer;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setBeer(String beer) {
+        this.beer = beer;
     }
 }
