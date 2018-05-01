@@ -1,8 +1,11 @@
 package com.joseph.guestbook.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "entries")
@@ -14,26 +17,28 @@ public class GuestBookEntry {
     private Integer id;
 
     @NotEmpty
+    @Size(min=3, max=30)
     @Column (name = "comment")
     private String comment;
 
     @NotEmpty
+    @Size(min=3, max=40)
     @Column (name = "user")
     private String user;
 
-    @NotEmpty
-    @Column (name = "percent")
-    private String percent;
-
+    @Column (name = "percent", nullable = false)
+    @NotNull(message = "Alcohol Percent Cannot Be Empty")
+    @Range(max = 100)
+    private Integer percent;
 
     @Column (name = "time")
     private String time;
 
-    public String getPercent() {
+    public Integer getPercent() {
         return percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(Integer percent) {
         this.percent = percent;
     }
 
